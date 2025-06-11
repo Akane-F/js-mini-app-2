@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/bottom.css">
+        <link rel="stylesheet" href="./css/status.css">
+        <script src="./JavaScript/bottom.js"></script>
+        <title></title>
+    </head>
+    <body>
+      <main>
+        <div id="contents-wrapper">
+          <section id="status">
+            <div class="gauge" id="energy">
+              <div class="gauge-icons gauge-bg">
+                <img src="./assets/icons/Empty-heart.png" alt="Empty Heart">
+                <img src="./assets/icons/Empty-heart.png" alt="Empty Heart">
+                <img src="./assets/icons/Empty-heart.png" alt="Empty Heart">
+                <img src="./assets/icons/Empty-heart.png" alt="Empty Heart">
+                <img src="./assets/icons/Empty-heart.png" alt="Empty Heart">
+              </div>
+              <div class="gauge-icons gauge-fg">
+                <img src="./assets/icons/Heart.png" alt="Heart">
+                <img src="./assets/icons/Heart.png" alt="Heart">
+                <img src="./assets/icons/Heart.png" alt="Heart">
+                <img src="./assets/icons/Heart.png" alt="Heart">
+                <img src="./assets/icons/Heart.png" alt="Heart">
+              </div>
+            </div>
+            <div class="gauge" id="happiness">
+              <div class="gauge-icons gauge-bg">
+                <img src="./assets/icons/Empty-star.png" alt="Empty Star">
+                <img src="./assets/icons/Empty-star.png" alt="Empty Star">
+                <img src="./assets/icons/Empty-star.png" alt="Empty Star">
+                <img src="./assets/icons/Empty-star.png" alt="Empty Star">
+                <img src="./assets/icons/Empty-star.png" alt="Empty Star">
+              </div>
+              <div class="gauge-icons gauge-fg">
+                <img src="./assets/icons/Star.png" alt="Star">
+                <img src="./assets/icons/Star.png" alt="Star">
+                <img src="./assets/icons/Star.png" alt="Star">
+                <img src="./assets/icons/Star.png" alt="Star">
+                <img src="./assets/icons/Star.png" alt="Star">
+              </div>
+            </div>
+          </section>
+        </div>  
+        <section id="character" aria-label="character">
+          <div id="mainchara">
+            <img  id="piyo" src="./assets/piyopiyo.gif" alt="piyo">
+          </div>
+          <div id="poop">
+            <img src="./assets/poop 1.png" alt="poop">
+          </div>
+          <div id="foodDisplay" class="hidden"></div>
+          <div id="foodModal" class="modal hidden">
+            <div class="modal-content">
+              <h2>What should I eat?</h2>
+              <ul class="food-options">
+                <li><button class="food-choice" data-food="🍙">🍙</button></li>
+                <li><button class="food-choice" data-food="🍎">🍎</button></li>
+                <li><button class="food-choice" data-food="🍕">🍕</button></li>
+                <li><button class="food-choice" data-food="🍜">🍜</button></li>
+              </ul>
+              <button class="closeModal">×</button>
+            </div>
+          </div>
+          <div id="sleep">
+            <p id="moon">🌙</p>
+          </div>
+          <div id="empty-energy" class="hidden">
+            <img src="./assets/dokuro.png" alt="dokuro">
+          </div>
+        </section>
+        <section id="action">
+          <ul>
+            <li>
+              <button type="button" data-action="eat">
+                <img src="./assets/ic_eat.png" alt="ic_eat">
+              </button>
+            </li>
+            <li>
+              <button type="button" data-action="sleep">
+                <img src="./assets/ic_sleep.png" alt="ic_sleep">
+              </button>
+            </li>
+            <li>
+              <button type="button" data-action="game">
+                <img src="./assets/ic_game.png" alt="ic_game">
+              </button>
+            </li>
+            <li>
+              <button type="button" data-action="medicine">
+                <img src="./assets/ic_medicine.png" alt="ic_medicine">
+              </button>
+            </li>
+            <li>
+              <button type="button" data-action="clean">
+                <img src="./assets/ic_clean.png" alt="ic_clean">
+              </button>
+            </li>
+            <li>
+              <button type="button" data-action="scale">
+                <img src="./assets/ic_scale.png" alt="ic_scale">
+              </button>
+            </li>
+            <li>
+              <button type="button" data-action="education">
+                <img src="./assets/ic_education.png" alt="ic_education">
+              </button>
+            </li>
+            <li>
+              <button type="button" data-action="conversation">
+                <img src="./assets/ic_conversation.png" alt="ic_conversation">
+              </button>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </body>
+</html>
+    
+    

@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    list-style: none;
+}
+
+main {
+    background: url(../assets/backgound/Background_Blue.png);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+#contents-wrapper {
+    padding-top: 3rem;
+    width: 90vw;
+    justify-self: center;
+}
+
+@media (min-width: 600px) {
+    #contents-wrapper {
+        width: 70vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    #contents-wrapper {
+        width: 40vw;
+    }
+}
