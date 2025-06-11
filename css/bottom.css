@@ -36,9 +36,6 @@
 #foodDisplay.show {
   opacity: 1;
 }
-.hidden {
-  display: none;
-}
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-3px); }
@@ -76,21 +73,8 @@
 .sleep-animation {
   animation: fadeIn 0.5s ease-in-out;
 }
-.modal{
-  position:fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background-color: bisque;
-  padding: 3rem;
-  border-radius: 40px;
-}
-.modal.hidden {
-  display: none;
-}
-.modal h2{
-  text-align: center;
-}
+
+/* food options */
 .food-options{
   display: flex;
   justify-content: center;
@@ -112,23 +96,8 @@
   transform: scale(0.9);
   filter: brightness(0.9);
 }
-.modal-content{
-  position: relative;
-}
-.closeModal{
-  position:absolute;
-  top: -10%;
-  right: 5%;
-  font-size: 2rem;
-}
-.closeModal:hover {
-  transform: scale(0.95);
-  filter: brightness(1.1);
-}
-.closeModal:active {
-  transform: scale(0.9);
-  filter: brightness(0.9);
-}
+
+/* empty-energy */
 #empty-energy{
   position:absolute;
   bottom:0;
@@ -163,19 +132,7 @@
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(4, 1fr);
 }
-#action button{
-  border: none;
-  background: none;
-}
-button img {
+#action button img {
   width: 8vw;
   transition: transform 0.15s ease, filter 0.15s ease;
-}
-button:hover img {
-  transform: scale(0.95);
-  filter: brightness(1.1);
-}
-button:active img {
-  transform: scale(0.9);
-  filter: brightness(0.9);
 }

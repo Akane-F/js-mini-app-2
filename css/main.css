@@ -18,6 +18,7 @@ main {
     padding-top: 3rem;
     width: 90vw;
     justify-self: center;
+    position:relative;
 }
 
 @media (min-width: 600px) {
@@ -30,4 +31,53 @@ main {
     #contents-wrapper {
         width: 40vw;
     }
+}
+
+.hidden {
+  display: none;
+}
+
+/* modal */
+.modal{
+  position:fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: bisque;
+  padding: 3rem;
+  border-radius: 40px;
+}
+.modal h2{
+  text-align: center;
+}
+.modal-content{
+  position: relative;
+}
+.closeModal{
+  position:absolute;
+  top: -16%;
+  right: 0;
+  font-size: 2rem;
+}
+.closeModal:hover {
+  transform: scale(0.95);
+  filter: brightness(1.1);
+}
+.closeModal:active {
+  transform: scale(0.9);
+  filter: brightness(0.9);
+}
+
+/* button */
+button{
+  border: none;
+  background: none;
+}
+button:hover img {
+  transform: scale(0.95);
+  filter: brightness(1.1);
+}
+button:active img {
+  transform: scale(0.9);
+  filter: brightness(0.9);
 }

@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const foodModal = document.getElementById('foodModal');
-  const closeModal = document.querySelector('.closeModal');
+  const closeModals = document.querySelectorAll('.closeModal');
   const foodChoices = document.querySelectorAll('.food-choice');
   const foodDisplay = document.getElementById('foodDisplay');
   const emptyEnergy = document.getElementById('empty-energy');
+  const taskToggle = document.getElementById('task-toggle');
+  const taskModal = document.getElementById('taskModal');
 
 // ゲージのステータス管理
 let gauge = {
@@ -93,12 +95,21 @@ setInterval(() => {
     })
   })
 
+  // task check
+  taskToggle.addEventListener('click', ()=>{
+    taskModal.classList.remove('hidden');
+    taskModak.classList.add('show');
+  });
+
   // close modal
-  if (closeModal) {
-    closeModal.addEventListener('click', () =>{
-      foodModal.classList.add('hidden');
-    })
-  }
+  closeModals.forEach(button => {
+    button.addEventListener('click', ()=>{
+      const modal = button.closest('.modal');
+      if (modal) {
+        modal.classList.add('hidden');
+      }
+    });
+  });
 
   // empty-energy
   if (gauge.energy == 0) {
