@@ -19,6 +19,7 @@ function increaseEnergy() {
   if (gauge.energy < 5) {
     gauge.energy++;
     updateGauge('energy', gauge.energy, true);
+    resetPiyoImage();
   }
 }
 
@@ -26,6 +27,7 @@ function decreaseEnergy() {
   if (gauge.energy > 0) {
     gauge.energy--;
     updateGauge('energy', gauge.energy, false);
+    resetPiyoImage();
   }
 }
 
@@ -33,6 +35,7 @@ function increaseHappiness() {
   if (gauge.happiness < 5) {
     gauge.happiness++;
     updateGauge('happiness', gauge.happiness, true);
+    resetPiyoImage();
   }
 }
 
@@ -40,6 +43,7 @@ function decreaseHappiness() {
   if (gauge.happiness > 0) {
     gauge.happiness--;
     updateGauge('happiness', gauge.happiness, false);
+    resetPiyoImage();
   }
 }
 
@@ -57,17 +61,14 @@ function updateGauge(id, gauge, increase) {
   } else if (!increase && gauge < gaugeIcons.length ) {
     icon.style.opacity = 0;
   }
-
   // empty-energy
   if (id === 'energy') {
       if (gauge === 0) {
         emptyEnergy.classList.remove('hidden');
         emptyEnergy.classList.add('show');
-        document.querySelector('#piyo').src = './assets/sick-piyo.png';
       } else {
         emptyEnergy.classList.remove('show');
         emptyEnergy.classList.add('hidden');
-        document.querySelector('#piyo').src = './assets/piyopiyo.gif';
       }
     }
   // empty-happiness
@@ -75,11 +76,9 @@ function updateGauge(id, gauge, increase) {
       if (gauge === 0) {
         emptyHappiness.classList.remove('hidden');
         emptyHappiness.classList.add('show');
-        document.querySelector('#piyo').src = './assets/boring-piyo.png';
       } else {
         emptyHappiness.classList.remove('show');
         emptyHappiness.classList.add('hidden');
-        document.querySelector('#piyo').src = './assets/piyopiyo.gif';
       }
     }
 }
@@ -88,7 +87,7 @@ function updateGauge(id, gauge, increase) {
 setInterval(() => {
   decreaseEnergy();
   decreaseHappiness();
-}, 18000);
+}, 10000);
 
   // foodchoice
   foodChoices.forEach(choice => {
@@ -160,6 +159,26 @@ setInterval(() => {
     });
   });
 
+  // resetImage
+  let resetImageTimeout = null;
+  function resetPiyoImage(newImage = './assets/piyopiyo.gif', delay = 3000) {
+    if (resetImageTimeout) {
+      clearTimeout(resetImageTimeout);
+    }
+    resetImageTimeout = setTimeout(() => {
+      const piyo = document.querySelector('#piyo');
+      if (gauge.energy === 0 && gauge.happiness === 0){
+        piyo.src = './assets/dead.png';
+      } else if(gauge.energy === 0) {
+        piyo.src = './assets/sick-piyo.png';
+      } else if (gauge.happiness === 0) {
+        piyo.src = './assets/boring-piyo.png';
+      } else {
+        piyo.src = newImage;
+      }
+    }, delay);
+  }
+
   function handleAction(action) {
     switch (action) {
       case 'eat':
@@ -176,11 +195,7 @@ setInterval(() => {
           document.querySelector('#status-sleep').textContent ='✅';
           document.querySelector('#status-sleep').classList.add('checked');
           updateBadge();
-          setTimeout(() => {
-            document.querySelector('#piyo').src = './assets/piyopiyo.gif';
-            moon.classList.remove('show');
-            moon.classList.add('hidden');
-          }, 3000);
+          resetPiyoImage();
         break;
       case 'game':
         // energy:-1 happiness:+1
@@ -191,13 +206,7 @@ setInterval(() => {
         document.querySelector('#status-play').textContent ='✅';
         document.querySelector('#status-play').classList.add('checked');
         updateBadge();
-        setTimeout(() => {
-          if (gauge.energy == 0) {
-            document.querySelector('#piyo').src = './assets/sick-piyo.png';
-          } else {
-            document.querySelector('#piyo').src = './assets/piyopiyo.gif';
-          }
-        }, 3000);
+        resetPiyoImage();
         break;
       case 'medicine':
         // energy:+1
@@ -207,9 +216,7 @@ setInterval(() => {
         document.querySelector('#status-medicine').textContent ='✅';
         document.querySelector('#status-medicine').classList.add('checked');
         updateBadge();
-        setTimeout(() => {
-            document.querySelector('#piyo').src = './assets/piyopiyo.gif';
-          }, 3000);
+        resetPiyoImage();
         break;
       case 'clean':
         // #clean（opacity: 0 -> 1） happiness:+1 or happiness:-1
@@ -219,12 +226,10 @@ setInterval(() => {
         document.querySelector('#status-clean').textContent ='✅';
         document.querySelector('#status-clean').classList.add('checked');
         updateBadge();
+        resetPiyoImage();
         setTimeout(() => {
           document.querySelector('#poop').style.opacity = '1';
           decreaseHappiness();
-          if (gauge.happiness == 0) {
-            document.querySelector('#piyo').src = './assets/boring-piyo.png';
-          }
         }, 180000)
         break;
       case 'scale':
@@ -235,9 +240,7 @@ setInterval(() => {
         document.querySelector('#status-weight').textContent ='✅';
         document.querySelector('#status-weight').classList.add('checked');
         updateBadge();
-        setTimeout(() => {
-            document.querySelector('#piyo').src = './assets/piyopiyo.gif';
-          }, 3000);
+        resetPiyoImage();
         break;
       case 'education':
         // energy:-1 happiness:+1
@@ -248,13 +251,7 @@ setInterval(() => {
         document.querySelector('#status-teach').textContent ='✅';
         document.querySelector('#status-teach').classList.add('checked');
         updateBadge();
-        setTimeout(() => {
-          if (gauge.energy == 0) {
-            document.querySelector('#piyo').src = './assets/sick-piyo.png';
-          } else {
-            document.querySelector('#piyo').src = './assets/piyopiyo.gif';
-          }
-        }, 3000);
+        resetPiyoImage();
         break;
       case 'conversation':
         // energy:-1 happiness:+1
@@ -265,13 +262,7 @@ setInterval(() => {
         document.querySelector('#status-talk').textContent ='✅';
         document.querySelector('#status-talk').classList.add('checked');
         updateBadge();
-        setTimeout(() => {
-          if (gauge.energy == 0) {
-            document.querySelector('#piyo').src = './assets/sick-piyo.png';
-          } else {
-            document.querySelector('#piyo').src = './assets/piyopiyo.gif';
-          }
-        }, 3000);
+        resetPiyoImage();
         break;
     }
   }
