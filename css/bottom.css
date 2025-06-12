@@ -1,6 +1,5 @@
 /* character */
 #character{
-  width: 100vw;
   margin: 1rem auto;
   display: flex;
   justify-content: center;
@@ -15,7 +14,7 @@
 #poop{
   position:absolute;
   bottom:0;
-  right:35vw;
+  right:5vw;
   transition: opacity 0.5s ease;
 }
 #poop img{
@@ -25,7 +24,7 @@
 #foodDisplay{
   position:absolute;
   top:0;
-  left:35vw;
+  left:5vw;
   width: 5vw;
   font-size: 4rem;
   height:auto;
@@ -55,7 +54,7 @@
 #moon{
   position:absolute;
   top:0;
-  right:35vw;
+  left:5vw;
   font-size: 6vw;
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -100,7 +99,7 @@
 #empty-energy{
   position:absolute;
   bottom:0;
-  left:35vw;
+  left:5vw;
   width: 5vw;
   font-size: 4rem;
   height:auto;
@@ -138,9 +137,6 @@
 }
 /* action */
 #action{
-  width: 100vw;
-  height: auto;
-  
   margin: 1rem auto;
   display: flex;
   justify-content: center;

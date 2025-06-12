@@ -6,12 +6,36 @@
         <link rel="stylesheet" href="./css/main.css">
         <link rel="stylesheet" href="./css/bottom.css">
         <link rel="stylesheet" href="./css/status.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Monomaniac+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <script src="./JavaScript/bottom.js"></script>
-        <title></title>
+        <script src="./JavaScript/weather.js"></script>
+        <title>Pyokocchi</title>
     </head>
     <body>
       <main>
         <div id="contents-wrapper">
+          <section id="task">
+            <button type="button" id="task-toggle">
+              <img src="./assets/ic_task.png">
+            </button>
+            <span id="badge" class="badge">8</span>
+            <div id="taskModal" class="modal hidden">
+              <div class="modal-content">
+                <h2>Check our mission list, please!🐣</h2>
+                <ul id="routine">
+                  <li><span id="status-clean" class="task-status">☑️</span>🧹 Clean my room, please~</li>
+                  <li><span id="status-play" class="task-status">☑️</span>🎮 Play a game with me!</li>
+                  <li><span id="status-meal" class="task-status">☑️</span>🍚 Help me choose my meal?</li>
+                  <li><span id="status-teach" class="task-status">☑️</span>📖 Teach me something~</li>
+                  <li><span id="status-talk" class="task-status">☑️</span>🗣️ Talk to me, okay?</li>
+                  <li><span id="status-weight" class="task-status">☑️</span>⚖️ Check my weight!</li>
+                  <li><span id="status-medicine" class="task-status">☑️</span>💊 Give me my medicine?</li>
+                  <li><span id="status-sleep" class="task-status">☑️</span>💤 Sleep with me tonight...</li>
+                </ul>
+                <button class="closeModal">×</button>
+              </div>
+            </div>
+          </section>
           <section id="status">
             <div class="gauge" id="energy">
               <div class="gauge-icons gauge-bg">
@@ -46,103 +70,82 @@
               </div>
             </div>
           </section>
-          <section id="task">
-            <button type="button" id="task-toggle">
-              <img src="./assets/ic_task.png">
-            </button>
-            <span id="badge" class="badge">8</span>
-            <div id="taskModal" class="modal hidden">
+          <section id="character" aria-label="character">
+            <div id="weather"></div>
+            <div id="mainchara">
+              <img  id="piyo" src="./assets/piyopiyo.gif" alt="piyo">
+            </div>
+            <div id="poop">
+              <img src="./assets/poop 1.png" alt="poop">
+            </div>
+            <div id="foodDisplay" class="hidden"></div>
+            <div id="foodModal" class="modal hidden">
               <div class="modal-content">
-                <h2>Check our mission list, please!🐣</h2>
-                <ul id="routine">
-                  <li><span id="status-clean" class="task-status">☑️</span>🧹 Clean my room, please~</li>
-                  <li><span id="status-play" class="task-status">☑️</span>🎮 Play a game with me!</li>
-                  <li><span id="status-meal" class="task-status">☑️</span>🍚 Help me choose my meal?</li>
-                  <li><span id="status-teach" class="task-status">☑️</span>📖 Teach me something~</li>
-                  <li><span id="status-talk" class="task-status">☑️</span>🗣️ Talk to me, okay?</li>
-                  <li><span id="status-weight" class="task-status">☑️</span>⚖️ Check my weight!</li>
-                  <li><span id="status-medicine" class="task-status">☑️</span>💊 Give me my medicine?</li>
-                  <li><span id="status-sleep" class="task-status">☑️</span>💤 Sleep with me tonight...</li>
+                <h2>What should I eat?</h2>
+                <ul class="food-options">
+                  <li><button class="food-choice" data-food="🍙">🍙</button></li>
+                  <li><button class="food-choice" data-food="🍎">🍎</button></li>
+                  <li><button class="food-choice" data-food="🍕">🍕</button></li>
+                  <li><button class="food-choice" data-food="🍜">🍜</button></li>
                 </ul>
                 <button class="closeModal">×</button>
               </div>
             </div>
-          </section>
-        </div>  
-        <section id="character" aria-label="character">
-          <div id="mainchara">
-            <img  id="piyo" src="./assets/piyopiyo.gif" alt="piyo">
-          </div>
-          <div id="poop">
-            <img src="./assets/poop 1.png" alt="poop">
-          </div>
-          <div id="foodDisplay" class="hidden"></div>
-          <div id="foodModal" class="modal hidden">
-            <div class="modal-content">
-              <h2>What should I eat?</h2>
-              <ul class="food-options">
-                <li><button class="food-choice" data-food="🍙">🍙</button></li>
-                <li><button class="food-choice" data-food="🍎">🍎</button></li>
-                <li><button class="food-choice" data-food="🍕">🍕</button></li>
-                <li><button class="food-choice" data-food="🍜">🍜</button></li>
-              </ul>
-              <button class="closeModal">×</button>
+            <div id="sleep">
+              <p id="moon" class="hidden">🌙</p>
             </div>
-          </div>
-          <div id="sleep">
-            <p id="moon" class="hidden">🌙</p>
-          </div>
-          <div id="empty-energy" class="hidden">
-            <img src="./assets/dokuro.png" alt="dokuro">
-          </div>
-          <div id="empty-happiness" class="hidden">
-            <img src="./assets/anger_symbol-1.svg" alt="anger_symbol-1">
-          </div>
-        </section>
-        <section id="action">
-          <ul>
-            <li>
-              <button type="button" data-action="eat">
-                <img src="./assets/ic_eat.png" alt="ic_eat">
-              </button>
-            </li>
-            <li>
-              <button type="button" data-action="sleep">
-                <img src="./assets/ic_sleep.png" alt="ic_sleep">
-              </button>
-            </li>
-            <li>
-              <button type="button" data-action="game">
-                <img src="./assets/ic_game.png" alt="ic_game">
-              </button>
-            </li>
-            <li>
-              <button type="button" data-action="medicine">
-                <img src="./assets/ic_medicine.png" alt="ic_medicine">
-              </button>
-            </li>
-            <li>
-              <button type="button" data-action="clean">
-                <img src="./assets/ic_clean.png" alt="ic_clean">
-              </button>
-            </li>
-            <li>
-              <button type="button" data-action="scale">
-                <img src="./assets/ic_scale.png" alt="ic_scale">
-              </button>
-            </li>
-            <li>
-              <button type="button" data-action="education">
-                <img src="./assets/ic_education.png" alt="ic_education">
-              </button>
-            </li>
-            <li>
-              <button type="button" data-action="conversation">
-                <img src="./assets/ic_conversation.png" alt="ic_conversation">
-              </button>
-            </li>
-          </ul>
-        </section>
+            <div id="empty-energy" class="hidden">
+              <img src="./assets/dokuro.png" alt="dokuro">
+            </div>
+            <div id="empty-happiness" class="hidden">
+              <img src="./assets/anger_symbol-1.svg" alt="anger_symbol-1">
+            </div>
+          </section>
+          <section id="action">
+            <ul>
+              <li>
+                <button type="button" data-action="eat">
+                  <img src="./assets/ic_eat.png" alt="ic_eat">
+                </button>
+              </li>
+              <li>
+                <button type="button" data-action="sleep">
+                  <img src="./assets/ic_sleep.png" alt="ic_sleep">
+                </button>
+              </li>
+              <li>
+                <button type="button" data-action="game">
+                  <img src="./assets/ic_game.png" alt="ic_game">
+                </button>
+              </li>
+              <li>
+                <button type="button" data-action="medicine">
+                  <img src="./assets/ic_medicine.png" alt="ic_medicine">
+                </button>
+              </li>
+              <li>
+                <button type="button" data-action="clean">
+                  <img src="./assets/ic_clean.png" alt="ic_clean">
+                </button>
+              </li>
+              <li>
+                <button type="button" data-action="scale">
+                  <img src="./assets/ic_scale.png" alt="ic_scale">
+                </button>
+              </li>
+              <li>
+                <button type="button" data-action="education">
+                  <img src="./assets/ic_education.png" alt="ic_education">
+                </button>
+              </li>
+              <li>
+                <button type="button" data-action="conversation">
+                  <img src="./assets/ic_conversation.png" alt="ic_conversation">
+                </button>
+              </li>
+            </ul>
+          </section>
+        </div>
       </main>
     </body>
 </html>

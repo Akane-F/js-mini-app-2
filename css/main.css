@@ -7,7 +7,7 @@
 }
 
 main {
-    background: url(../assets/backgound/Background_Blue.png);
+    background-image: url(../assets/backgound/Background_Blue.png);
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -85,4 +85,26 @@ button:hover img {
 button:active img {
   transform: scale(0.9);
   filter: brightness(0.9);
+}
+
+#weather {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#weather img#weather-icon {
+    width: 100px;
+    height: auto;
+    margin: 0;
+}
+
+#weather p#weather-tmp {
+    font-family: "Monomaniac One", sans-serif;
+    font-size: 30px;
+    color: grey;
 }
