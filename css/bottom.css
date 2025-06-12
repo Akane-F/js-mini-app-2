@@ -116,6 +116,26 @@
   display: block;
   opacity: 1;
 }
+/* empty-happiness */
+#empty-happiness{
+  position:absolute;
+  top:10vh;
+  left:55vw;
+  width: 5vw;
+  font-size: 4rem;
+  height:auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: shake 0.4s ease-in-out infinite;
+}
+#empty-happiness img{
+  width: 5vw;
+  height:auto;
+}
+#empty-happiness.show {
+  display: block;
+  opacity: 1;
+}
 /* action */
 #action{
   width: 100vw;

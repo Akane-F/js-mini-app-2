@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const foodDisplay = document.getElementById('foodDisplay');
   const moon = document.getElementById('moon');
   const emptyEnergy = document.getElementById('empty-energy');
+  const emptyHappiness = document.getElementById('empty-happiness');
   const taskToggle = document.getElementById('task-toggle');
   const taskModal = document.getElementById('taskModal');
 
@@ -69,13 +70,25 @@ function updateGauge(id, gauge, increase) {
         document.querySelector('#piyo').src = './assets/piyopiyo.gif';
       }
     }
+  // empty-happiness
+  if (id === 'happiness') {
+      if (gauge === 0) {
+        emptyHappiness.classList.remove('hidden');
+        emptyHappiness.classList.add('show');
+        document.querySelector('#piyo').src = './assets/boring-piyo.png';
+      } else {
+        emptyHappiness.classList.remove('show');
+        emptyHappiness.classList.add('hidden');
+        document.querySelector('#piyo').src = './assets/piyopiyo.gif';
+      }
+    }
 }
 
 // 3分ごとに、energy:-1 happiness:-1
 setInterval(() => {
   decreaseEnergy();
   decreaseHappiness();
-}, 180000);
+}, 18000);
 
   // foodchoice
   foodChoices.forEach(choice => {
@@ -139,16 +152,6 @@ setInterval(() => {
       }
     });
   });
-
-  // empty-energy
-  if (gauge.energy == 0) {
-    emptyEnergy.classList.remove('hidden');
-    emptyEnergy.classList.add('show');
-    document.querySelector('#piyo').src = './assets/sick-piyo.png';
-  } else{
-    emptyEnergy.classList.remove('show');
-    emptyEnergy.classList.add('hidden');   
-  }
 
   document.querySelectorAll('#action button').forEach(button => {
     button.addEventListener('click', () => {
