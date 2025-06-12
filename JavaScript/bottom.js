@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeModals = document.querySelectorAll('.closeModal');
   const foodChoices = document.querySelectorAll('.food-choice');
   const foodDisplay = document.getElementById('foodDisplay');
+  const moon = document.getElementById('moon');
   const emptyEnergy = document.getElementById('empty-energy');
   const taskToggle = document.getElementById('task-toggle');
   const taskModal = document.getElementById('taskModal');
@@ -61,9 +62,11 @@ function updateGauge(id, gauge, increase) {
       if (gauge === 0) {
         emptyEnergy.classList.remove('hidden');
         emptyEnergy.classList.add('show');
+        document.querySelector('#piyo').src = './assets/sick-piyo.png';
       } else {
         emptyEnergy.classList.remove('show');
         emptyEnergy.classList.add('hidden');
+        document.querySelector('#piyo').src = './assets/piyopiyo.gif';
       }
     }
 }
@@ -87,6 +90,8 @@ setInterval(() => {
       foodDisplay.classList.add('show');
       // energy:+1
       increaseEnergy();
+      // Todolist checked
+      document.querySelector('#status-meal').textContent ='✅';
       // timeout
       setTimeout(() => {
         foodDisplay.classList.remove('show');
@@ -98,7 +103,7 @@ setInterval(() => {
   // task check
   taskToggle.addEventListener('click', ()=>{
     taskModal.classList.remove('hidden');
-    taskModak.classList.add('show');
+    taskModal.classList.add('show');
   });
 
   // close modal
@@ -136,11 +141,15 @@ setInterval(() => {
       case 'sleep':
           // energy:+1
           document.querySelector('#piyo').src = './assets/suibun.png';
-          document.querySelector('#moon').style.opacity = '1';
+          moon.classList.remove('hidden');
+          moon.classList.add('show');
           increaseEnergy();
+          // Todolist checked
+          document.querySelector('#status-sleep').textContent ='✅';
           setTimeout(() => {
             document.querySelector('#piyo').src = './assets/piyopiyo.gif';
-            document.querySelector('#moon').style.opacity = '0';
+            moon.classList.remove('show');
+            moon.classList.add('hidden');
           }, 3000);
         break;
       case 'game':
@@ -148,6 +157,8 @@ setInterval(() => {
         document.querySelector('#piyo').src = './assets/mizudeppou.png';
         decreaseEnergy();
         increaseHappiness();
+        // Todolist checked
+        document.querySelector('#status-play').textContent ='✅';
         setTimeout(() => {
           if (gauge.energy == 0) {
             document.querySelector('#piyo').src = './assets/sick-piyo.png';
@@ -160,6 +171,8 @@ setInterval(() => {
         // energy:+1
         document.querySelector('#piyo').src = './assets/megusuri-shippai.png';
         increaseEnergy();
+        // Todolist checked
+        document.querySelector('#status-medicine').textContent ='✅';
         setTimeout(() => {
             document.querySelector('#piyo').src = './assets/piyopiyo.gif';
           }, 3000);
@@ -168,18 +181,22 @@ setInterval(() => {
         // #clean（opacity: 0 -> 1） happiness:+1 or happiness:-1
         document.querySelector('#poop').style.opacity = '0';
         increaseHappiness();
+        // Todolist checked
+        document.querySelector('#status-clean').textContent ='✅';
         setTimeout(() => {
           document.querySelector('#poop').style.opacity = '1';
           decreaseHappiness();
           if (gauge.happiness == 0) {
             document.querySelector('#piyo').src = './assets/boring-piyo.png';
           }
-        }, 300000)
+        }, 180000)
         break;
       case 'scale':
         // happiness:+1
         document.querySelector('#piyo').src = './assets/taiju.png';
         increaseHappiness();
+        // Todolist checked
+        document.querySelector('#status-weight').textContent ='✅';
         setTimeout(() => {
             document.querySelector('#piyo').src = './assets/piyopiyo.gif';
           }, 3000);
@@ -189,6 +206,8 @@ setInterval(() => {
         document.querySelector('#piyo').src = './assets/study-piyoyo.png';
         decreaseEnergy();
         increaseHappiness();
+        // Todolist checked
+        document.querySelector('#status-teach').textContent ='✅';
         setTimeout(() => {
           if (gauge.energy == 0) {
             document.querySelector('#piyo').src = './assets/sick-piyo.png';
@@ -202,6 +221,8 @@ setInterval(() => {
         document.querySelector('#piyo').src = './assets/missetu.png';
         decreaseEnergy();
         increaseHappiness();
+        // Todolist checked
+        document.querySelector('#status-talk').textContent ='✅';
         setTimeout(() => {
           if (gauge.energy == 0) {
             document.querySelector('#piyo').src = './assets/sick-piyo.png';

@@ -50,3 +50,18 @@
 #taskModal{
     z-index: 999;
 }
+.task-status{
+    padding: 0 2ch;
+}
+#routine{
+    background-color: rgb(148, 154, 229);
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem;
+}
+#routine li{
+    padding: 0.3rem;
+    background-color: white;
+    color: rgb(54, 56, 93);
+    border: 1px solid rgb(148, 154, 229);
+}

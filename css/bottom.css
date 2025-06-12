@@ -58,7 +58,6 @@
   right:35vw;
   font-size: 6vw;
   animation: fadeIn 0.5s ease-in-out;
-  opacity: 0;
 }
 @keyframes fadeIn {
   0% {
@@ -84,9 +83,9 @@
   padding: 0.3rem;
   margin: 1rem;
   font-size: 4rem;
-  border: solid 1px rgb(199, 199, 199);
+  border: 5px solid rgb(148, 154, 229);
   border-radius: 10px;
-  background-color:rgb(251, 244, 244) ;
+  background-color:rgb(235, 236, 251);
 }
 .food-choice:hover {
   transform: scale(0.95);
@@ -117,11 +116,11 @@
   display: block;
   opacity: 1;
 }
-
-
 /* action */
 #action{
   width: 100vw;
+  height: auto;
+  
   margin: 1rem auto;
   display: flex;
   justify-content: center;
