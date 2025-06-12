@@ -195,6 +195,10 @@ setInterval(() => {
           document.querySelector('#status-sleep').textContent ='✅';
           document.querySelector('#status-sleep').classList.add('checked');
           updateBadge();
+          setTimeout(() => {
+            moon.classList.remove('show');
+            moon.classList.add('hidden');
+          }, 3000)
           resetPiyoImage();
         break;
       case 'game':
