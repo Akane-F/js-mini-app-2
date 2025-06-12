@@ -144,6 +144,7 @@ setInterval(() => {
   if (gauge.energy == 0) {
     emptyEnergy.classList.remove('hidden');
     emptyEnergy.classList.add('show');
+    document.querySelector('#piyo').src = './assets/sick-piyo.png';
   } else{
     emptyEnergy.classList.remove('show');
     emptyEnergy.classList.add('hidden');   
