@@ -92,6 +92,8 @@ setInterval(() => {
       increaseEnergy();
       // Todolist checked
       document.querySelector('#status-meal').textContent ='✅';
+      document.querySelector('#status-meal').classList.add('checked');
+      updateBadge();
       // timeout
       setTimeout(() => {
         foodDisplay.classList.remove('show');
@@ -106,6 +108,28 @@ setInterval(() => {
     taskModal.classList.add('show');
   });
 
+  // update badge
+  function updateBadge() {
+    const tasks = document.querySelectorAll('.task-status');
+    let uncheckedCount = 0;
+    tasks.forEach(task => {
+      if (!task.classList.contains('checked')) {
+        uncheckedCount++;
+      }
+    });
+
+    const badge = document.getElementById('badge');
+    badge.textContent = uncheckedCount;
+
+    if (uncheckedCount > 0) {
+      badge.classList.remove('hidden');
+      badge.classList.add('show');
+    } else {
+      badge.classList.remove('show');
+      badge.classList.add('hidden');
+    }
+  }
+  
   // close modal
   closeModals.forEach(button => {
     button.addEventListener('click', ()=>{
@@ -146,6 +170,8 @@ setInterval(() => {
           increaseEnergy();
           // Todolist checked
           document.querySelector('#status-sleep').textContent ='✅';
+          document.querySelector('#status-sleep').classList.add('checked');
+          updateBadge();
           setTimeout(() => {
             document.querySelector('#piyo').src = './assets/piyopiyo.gif';
             moon.classList.remove('show');
@@ -159,6 +185,8 @@ setInterval(() => {
         increaseHappiness();
         // Todolist checked
         document.querySelector('#status-play').textContent ='✅';
+        document.querySelector('#status-play').classList.add('checked');
+        updateBadge();
         setTimeout(() => {
           if (gauge.energy == 0) {
             document.querySelector('#piyo').src = './assets/sick-piyo.png';
@@ -173,6 +201,8 @@ setInterval(() => {
         increaseEnergy();
         // Todolist checked
         document.querySelector('#status-medicine').textContent ='✅';
+        document.querySelector('#status-medicine').classList.add('checked');
+        updateBadge();
         setTimeout(() => {
             document.querySelector('#piyo').src = './assets/piyopiyo.gif';
           }, 3000);
@@ -183,6 +213,8 @@ setInterval(() => {
         increaseHappiness();
         // Todolist checked
         document.querySelector('#status-clean').textContent ='✅';
+        document.querySelector('#status-clean').classList.add('checked');
+        updateBadge();
         setTimeout(() => {
           document.querySelector('#poop').style.opacity = '1';
           decreaseHappiness();
@@ -197,6 +229,8 @@ setInterval(() => {
         increaseHappiness();
         // Todolist checked
         document.querySelector('#status-weight').textContent ='✅';
+        document.querySelector('#status-weight').classList.add('checked');
+        updateBadge();
         setTimeout(() => {
             document.querySelector('#piyo').src = './assets/piyopiyo.gif';
           }, 3000);
@@ -208,6 +242,8 @@ setInterval(() => {
         increaseHappiness();
         // Todolist checked
         document.querySelector('#status-teach').textContent ='✅';
+        document.querySelector('#status-teach').classList.add('checked');
+        updateBadge();
         setTimeout(() => {
           if (gauge.energy == 0) {
             document.querySelector('#piyo').src = './assets/sick-piyo.png';
@@ -223,6 +259,8 @@ setInterval(() => {
         increaseHappiness();
         // Todolist checked
         document.querySelector('#status-talk').textContent ='✅';
+        document.querySelector('#status-talk').classList.add('checked');
+        updateBadge();
         setTimeout(() => {
           if (gauge.energy == 0) {
             document.querySelector('#piyo').src = './assets/sick-piyo.png';
