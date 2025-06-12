@@ -7,7 +7,7 @@
 }
 
 main {
-    background: url(../assets/backgound/Background_Blue.png);
+    background-image: url(../assets/backgound/Background_Blue.png);
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
