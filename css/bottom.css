@@ -119,11 +119,11 @@
 #empty-happiness{
   position:absolute;
   top:10vh;
-  left:55vw;
+  left: 25vw;
   width: 5vw;
   font-size: 4rem;
   height:auto;
-  opacity: 0;
+  /* opacity: 0; */
   transition: opacity 0.3s ease;
   animation: shake 0.4s ease-in-out infinite;
 }
