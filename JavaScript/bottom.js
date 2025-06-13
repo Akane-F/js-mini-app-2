@@ -8,6 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyHappiness = document.getElementById('empty-happiness');
   const taskToggle = document.getElementById('task-toggle');
   const taskModal = document.getElementById('taskModal');
+  const taskStatusMap = new Map([
+    ['meal', document.querySelector('#status-meal')],
+    ['sleep', document.querySelector('#status-sleep')],
+    ['play', document.querySelector('#status-play')],
+    ['medicine', document.querySelector('#status-medicine')],
+    ['clean', document.querySelector('#status-clean')],
+    ['weight', document.querySelector('#status-weight')],
+    ['teach', document.querySelector('#status-teach')],
+    ['talk', document.querySelector('#status-talk')],
+  ]);
 
 // ゲージのステータス管理
 let gauge = {
@@ -87,7 +97,7 @@ function updateGauge(id, gauge, increase) {
 setInterval(() => {
   decreaseEnergy();
   decreaseHappiness();
-}, 10000);
+}, 18000);
 
   // foodchoice
   foodChoices.forEach(choice => {
@@ -102,10 +112,7 @@ setInterval(() => {
       foodDisplay.classList.add('show');
       // energy:+1
       increaseEnergy();
-      // Todolist checked
-      document.querySelector('#status-meal').textContent ='✅';
-      document.querySelector('#status-meal').classList.add('checked');
-      updateBadge();
+      markTaskAsChecked('meal');
       // timeout
       setTimeout(() => {
         foodDisplay.classList.remove('show');
@@ -120,26 +127,29 @@ setInterval(() => {
     taskModal.classList.add('show');
   });
 
+  // markTaskAschecked
+    function markTaskAsChecked(taskName) {
+    const element = taskStatusMap.get(taskName);
+    if(element && !element.classList.contains('checked')){
+      element.textContent = '✅';
+      element.classList.add('checked');
+      updateBadge();
+    }
+  }
+
   // update badge
   function updateBadge() {
-    const tasks = document.querySelectorAll('.task-status');
     let uncheckedCount = 0;
-    tasks.forEach(task => {
-      if (!task.classList.contains('checked')) {
+    for (let [, element] of taskStatusMap) {
+      if (!element.classList.contains('checked')) {
         uncheckedCount++;
       }
-    });
+    }
 
     const badge = document.getElementById('badge');
     badge.textContent = uncheckedCount;
-
-    if (uncheckedCount > 0) {
-      badge.classList.remove('hidden');
-      badge.classList.add('show');
-    } else {
-      badge.classList.remove('show');
-      badge.classList.add('hidden');
-    }
+    badge.classList.toggle('hidden', uncheckedCount === 0);
+    badge.classList.tohhle('show', uncheckedCount > 0);
   }
   
   // close modal
@@ -191,10 +201,7 @@ setInterval(() => {
           moon.classList.remove('hidden');
           moon.classList.add('show');
           increaseEnergy();
-          // Todolist checked
-          document.querySelector('#status-sleep').textContent ='✅';
-          document.querySelector('#status-sleep').classList.add('checked');
-          updateBadge();
+          markTaskAsChecked('sleep');
           setTimeout(() => {
             moon.classList.remove('show');
             moon.classList.add('hidden');
@@ -206,30 +213,21 @@ setInterval(() => {
         document.querySelector('#piyo').src = './assets/mizudeppou.png';
         decreaseEnergy();
         increaseHappiness();
-        // Todolist checked
-        document.querySelector('#status-play').textContent ='✅';
-        document.querySelector('#status-play').classList.add('checked');
-        updateBadge();
+        markTaskAsChecked('play');
         resetPiyoImage();
         break;
       case 'medicine':
         // energy:+1
         document.querySelector('#piyo').src = './assets/megusuri-shippai.png';
         increaseEnergy();
-        // Todolist checked
-        document.querySelector('#status-medicine').textContent ='✅';
-        document.querySelector('#status-medicine').classList.add('checked');
-        updateBadge();
+        markTaskAsChecked('medicine');
         resetPiyoImage();
         break;
       case 'clean':
         // #clean（opacity: 0 -> 1） happiness:+1 or happiness:-1
         document.querySelector('#poop').style.opacity = '0';
         increaseHappiness();
-        // Todolist checked
-        document.querySelector('#status-clean').textContent ='✅';
-        document.querySelector('#status-clean').classList.add('checked');
-        updateBadge();
+        markTaskAsChecked('clean');
         resetPiyoImage();
         setTimeout(() => {
           document.querySelector('#poop').style.opacity = '1';
@@ -240,10 +238,7 @@ setInterval(() => {
         // happiness:+1
         document.querySelector('#piyo').src = './assets/taiju.png';
         increaseHappiness();
-        // Todolist checked
-        document.querySelector('#status-weight').textContent ='✅';
-        document.querySelector('#status-weight').classList.add('checked');
-        updateBadge();
+        markTaskAsChecked('weight');
         resetPiyoImage();
         break;
       case 'education':
@@ -251,10 +246,7 @@ setInterval(() => {
         document.querySelector('#piyo').src = './assets/study-piyoyo.png';
         decreaseEnergy();
         increaseHappiness();
-        // Todolist checked
-        document.querySelector('#status-teach').textContent ='✅';
-        document.querySelector('#status-teach').classList.add('checked');
-        updateBadge();
+        markTaskAsChecked('teach');
         resetPiyoImage();
         break;
       case 'conversation':
@@ -262,10 +254,7 @@ setInterval(() => {
         document.querySelector('#piyo').src = './assets/missetu.png';
         decreaseEnergy();
         increaseHappiness();
-        // Todolist checked
-        document.querySelector('#status-talk').textContent ='✅';
-        document.querySelector('#status-talk').classList.add('checked');
-        updateBadge();
+        markTaskAsChecked('talk');
         resetPiyoImage();
         break;
     }
