@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ['teach', document.querySelector('#status-teach')],
     ['talk', document.querySelector('#status-talk')],
   ]);
+  const cooldownSet = new Set();
+  const cooldownTimeMap = new Map();
+  const COOLDOWN_TIME = 5 * 60 * 1000;
 
 // ゲージのステータス管理
 let gauge = {
@@ -97,7 +100,7 @@ function updateGauge(id, gauge, increase) {
 setInterval(() => {
   decreaseEnergy();
   decreaseHappiness();
-}, 18000);
+}, 180000);
 
   // foodchoice
   foodChoices.forEach(choice => {
@@ -145,11 +148,10 @@ setInterval(() => {
         uncheckedCount++;
       }
     }
-
     const badge = document.getElementById('badge');
     badge.textContent = uncheckedCount;
     badge.classList.toggle('hidden', uncheckedCount === 0);
-    badge.classList.tohhle('show', uncheckedCount > 0);
+    badge.classList.toggle('show', uncheckedCount > 0);
   }
   
   // close modal
@@ -159,13 +161,6 @@ setInterval(() => {
       if (modal) {
         modal.classList.add('hidden');
       }
-    });
-  });
-
-  document.querySelectorAll('#action button').forEach(button => {
-    button.addEventListener('click', () => {
-      const action = button.dataset.action;
-      handleAction(action);
     });
   });
 
@@ -187,6 +182,25 @@ setInterval(() => {
         piyo.src = newImage;
       }
     }, delay);
+  }
+
+  // cooldown
+  function canExecuteAction(actionName) {
+    const now = Date.now();
+    if(!cooldownSet.has(actionName)) {
+      cooldownSet.add(actionName);
+      cooldownTimeMap.set(actionName, now);
+      setTimeout(() => {
+        cooldownSet.delete(actionName);
+        cooldownTimeMap.delete(actionName);
+      }, COOLDOWN_TIME);
+      return true;
+    }
+    const lastExecuted = cooldownTimeMap.get(actionName);
+    const timePassed = now - lastExecuted;
+    const minutesLeft = Math.ceil((COOLDOWN_TIME - timePassed) / 60000);
+    alert(`${actionName} : Please wait for ${minutesLeft} minutes`);
+    return false;
   }
 
   function handleAction(action) {
@@ -259,4 +273,13 @@ setInterval(() => {
         break;
     }
   }
+
+    document.querySelectorAll('#action button').forEach(button => {
+    button.addEventListener('click', () => {
+      const action = button.dataset.action;
+      if (canExecuteAction(action)) {
+        handleAction(action);
+      }
+    });
+  });
 })
