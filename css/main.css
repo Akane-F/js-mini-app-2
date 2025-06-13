@@ -108,3 +108,21 @@ button:active img {
     font-size: 30px;
     color: grey;
 }
+
+#message {
+    display: flex;
+    position: absolute;
+    top: 10%;
+    left: 5vw;
+    z-index: 10;
+    width: fit-content;
+}
+
+#message p {
+    font-family: "Monomaniac One", sans-serif;
+    color: rgb(133, 131, 131);
+    white-space: nowrap;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 0 5%;
+    font-size: 1.2rem;
+}

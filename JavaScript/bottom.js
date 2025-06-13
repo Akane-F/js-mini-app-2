@@ -22,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const cooldownTimeMap = new Map();
   const COOLDOWN_TIME = 5 * 60 * 1000;
 
+  const conversations = [
+    "I'm hungry... Got any snacks?",
+    "So sleepy... Can I take a nap?",
+    "Wanna play with me?",
+    "How are you feeling today?",
+    "I kinda feel like studying today!",
+    "Let’s talk more! I like chatting with you!",
+    "Do you think I’ve grown a little?"
+  ];
+
 // ゲージのステータス管理
 let gauge = {
   energy: 5,
@@ -266,6 +276,14 @@ setInterval(() => {
       case 'conversation':
         // energy:-1 happiness:+1
         document.querySelector('#piyo').src = './assets/missetu.png';
+        const message = document.getElementById('message');
+        const messageText = document.createElement('p');
+        messageText.id = 'message-text';
+        messageText.textContent = conversations[Math.floor(Math.random() * conversations.length)];
+        message.appendChild(messageText);
+        setTimeout(() => {
+          message.removeChild(messageText);
+        }, 3000);
         decreaseEnergy();
         increaseHappiness();
         markTaskAsChecked('talk');
