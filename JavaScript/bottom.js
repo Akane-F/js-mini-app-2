@@ -276,14 +276,15 @@ setInterval(() => {
       case 'conversation':
         // energy:-1 happiness:+1
         document.querySelector('#piyo').src = './assets/missetu.png';
-        const message = document.getElementById('message');
-        const messageText = document.createElement('p');
-        messageText.id = 'message-text';
-        messageText.textContent = conversations[Math.floor(Math.random() * conversations.length)];
-        message.appendChild(messageText);
+        //-- Write by Jquery --//
+        const messageText = $('<p></p>')
+          .addClass('message-text')
+          .text(conversations[Math.floor(Math.random() * conversations.length)]);
+        $('#message').append(messageText);
         setTimeout(() => {
-          message.removeChild(messageText);
+          messageText.remove();
         }, 3000);
+        //-- Write by Jquery --//
         decreaseEnergy();
         increaseHappiness();
         markTaskAsChecked('talk');
