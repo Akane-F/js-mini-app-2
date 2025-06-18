@@ -126,3 +126,50 @@ button:active img {
     padding: 0 5%;
     font-size: 1.2rem;
 }
+
+#weather-modal {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 40px;
+    width: 90%;
+    height: 35%;
+    background-color: bisque;
+    padding: 2rem;
+    font-family: "Monomaniac One", sans-serif;
+    gap: 2rem;
+}
+
+#weather-close {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    align-self: end;
+    font-size: 2rem;
+}
+
+#forecast-title {
+    font-size: 2rem;
+}
+
+#forecast-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+#forecasts {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.date-forcast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}

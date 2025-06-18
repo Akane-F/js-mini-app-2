@@ -47,6 +47,11 @@ function fetchWeather () {
         img.src = "https:" + data.current.condition.icon;
         weather.appendChild(img);
 
+        img.addEventListener("click", () => {
+            const weatherModal = document.getElementById("weather-modal");
+            weatherModal.style.display = "flex";
+        });
+
         const temp = document.createElement('p');
         temp.id = 'weather-tmp';
         temp.textContent = data.current.temp_c + "℃";
@@ -60,6 +65,59 @@ function fetchWeather () {
     });
 }
 
+function fetchForecast () {
+    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=auto:ip&days=5`)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Failed WeatherAPI forecast request.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const forecastsData = data.forecast.forecastday;
+        const forecasts = document.getElementById('forecasts');
+
+        forecastsData.forEach(day => {
+            const dateForcast = document.createElement('div');
+            dateForcast.classList.add('date-forcast');
+            const date = document.createElement('p');
+            date.classList.add('date');
+            const dateData = new Date(day.date);
+            date.textContent = `${dateData.getMonth() + 1}/${dateData.getDate()}`;
+            dateForcast.appendChild(date);
+
+            const icon = document.createElement('img');
+            icon.classList.add('forecast-icon');
+            icon.src = "https:" + day.day.condition.icon;
+            dateForcast.appendChild(icon);
+                
+            const max = document.createElement('p');
+            max.classList.add('date');
+            max.textContent = day.day.maxtemp_c;
+            dateForcast.appendChild(max);
+
+            const min = document.createElement('p');
+            min.classList.add('date');
+            min.textContent = day.day.mintemp_c;
+            dateForcast.appendChild(min);
+
+            forecasts.appendChild(dateForcast);
+          });
+    })
+    .catch(error => {
+        console.error('error:', error);
+    });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     fetchWeather();
+    fetchForecast();
 });
+
+const weatherModal = document.getElementById("weather-modal");
+const closeWeatherModal = document.getElementById("weather-close");
+
+closeWeatherModal.addEventListener("click", () => {
+    weatherModal.style.display = "none";
+});
+  
